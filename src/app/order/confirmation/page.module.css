@@ -1,0 +1,246 @@
+.page {
+  --gray-rgb: 0, 0, 0;
+  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
+  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
+  --success-color: #10b981;
+  --success-bg: rgba(16, 185, 129, 0.1);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  font-family: var(--font-geist-sans);
+}
+
+@media (prefers-color-scheme: dark) {
+  .page {
+    --gray-rgb: 255, 255, 255;
+    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
+    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
+    --success-color: #34d399;
+    --success-bg: rgba(52, 211, 153, 0.1);
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.successIcon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--success-bg);
+  color: var(--success-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  border: 3px solid var(--success-color);
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--foreground);
+}
+
+.description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--foreground);
+  opacity: 0.8;
+  margin: 0;
+}
+
+.orderDetails {
+  background: var(--gray-alpha-100);
+  border: 1px solid var(--gray-alpha-200);
+  border-radius: 12px;
+  padding: 30px;
+  text-align: left;
+}
+
+.orderDetails h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+  color: var(--foreground);
+  text-align: center;
+}
+
+.itemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.orderItem {
+  background: var(--background);
+  border: 1px solid var(--gray-alpha-200);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.itemInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.sku {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--foreground);
+  font-family: var(--font-geist-mono);
+}
+
+.amount {
+  color: var(--foreground);
+  opacity: 0.7;
+  font-size: 1rem;
+}
+
+.deliveryInfo {
+  background: var(--success-bg);
+  border: 1px solid var(--success-color);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: left;
+}
+
+.deliveryInfo h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+  color: var(--success-color);
+}
+
+.deliveryInfo p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--foreground);
+  margin: 0;
+}
+
+.deliveryInfo strong {
+  color: var(--success-color);
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.newOrderButton,
+.homeButton {
+  padding: 16px 32px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+  text-decoration: none;
+  display: inline-block;
+  min-width: 160px;
+}
+
+.newOrderButton {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.newOrderButton:hover {
+  background: var(--button-primary-hover);
+  transform: translateY(-2px);
+}
+
+.homeButton {
+  background: transparent;
+  color: var(--foreground);
+  border-color: var(--gray-alpha-200);
+}
+
+.homeButton:hover {
+  background: var(--button-secondary-hover);
+  border-color: transparent;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  color: var(--foreground);
+  opacity: 0.7;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--gray-alpha-200);
+  border-top: 3px solid var(--foreground);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .successIcon {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+  }
+
+  .itemInfo {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .newOrderButton,
+  .homeButton {
+    width: 100%;
+  }
+}
