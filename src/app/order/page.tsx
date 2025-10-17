@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -11,7 +11,8 @@ interface OrderItem {
   amount: number;
 }
 
-export default function OrderPage() {
+// Component that uses useSearchParams - needs to be wrapped in Suspense
+function OrderForm() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
@@ -183,5 +184,52 @@ export default function OrderPage() {
         </div>
       </main>
     </div>
+  );
+}
+
+// Loading component for Suspense fallback
+function OrderFormLoading() {
+  return (
+    <div className={styles.page}>
+      <main className={styles.main}>
+        <div className={styles.header}>
+          <h1 className={styles.title}>Order Inventory</h1>
+          <p className={styles.description}>
+            Add SKU codes and quantities for the items you want to order.
+          </p>
+        </div>
+        <div className={styles.orderForm}>
+          <div className={styles.orderItem}>
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>SKU Code</label>
+              <input
+                type="text"
+                placeholder="Loading..."
+                className={styles.input}
+                disabled
+              />
+            </div>
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>Amount</label>
+              <input type="number" className={styles.input} disabled />
+            </div>
+          </div>
+        </div>
+        <div className={styles.navigation}>
+          <Link href="/" className={styles.backLink}>
+            ← Back to Home
+          </Link>
+        </div>
+      </main>
+    </div>
+  );
+}
+
+// Main component with Suspense boundary
+export default function OrderPage() {
+  return (
+    <Suspense fallback={<OrderFormLoading />}>
+      <OrderForm />
+    </Suspense>
   );
 }
