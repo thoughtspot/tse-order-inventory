@@ -144,20 +144,6 @@ function OrderForm() {
           </button>
         </div>
 
-        {validItems.length > 0 && (
-          <div className={styles.summary}>
-            <h3>Order Summary</h3>
-            <div className={styles.summaryItems}>
-              {validItems.map((item, index) => (
-                <div key={index} className={styles.summaryItem}>
-                  <span className={styles.sku}>{item.sku}</span>
-                  <span className={styles.amount}>Qty: {item.amount}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
         <div className={styles.actions}>
           <button
             type="button"
